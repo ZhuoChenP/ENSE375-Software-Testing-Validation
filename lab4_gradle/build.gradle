@@ -1,0 +1,36 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+            outputDir = file('bin')
+        }
+        
+    }
+    test {
+        java {
+            srcDirs = ['test']
+            outputDir = file('bin')
+        }
+       
+    }
+}
+
+dependencies { 
+    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:4.4.2'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation (platform('org.junit:junit-bom:5.7.1'))
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
